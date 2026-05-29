@@ -26,20 +26,32 @@ public abstract class Empleado {
 	}
 	
 	// METODOS
-	public int calcularEdad(LocalDate fechaActual) {
-		
-		int edad = fechaActual.getYear() - this.fechaDeNacimiento.getYear();
-		
-		if (fechaActual.getMonthValue() < this.fechaDeNacimiento.getMonthValue()) {
-			edad --;
-			
-		} else if (fechaActual.getMonthValue() == this.fechaDeNacimiento.getMonthValue() &&
-				fechaActual.getDayOfMonth() < this.fechaDeNacimiento.getDayOfMonth()) {
-			edad --;
-		}
-	
-		return edad;
+	private int calcularDiferencia(LocalDate fechaActual, LocalDate fechaBase) {
+	    
+		int diferencia = fechaActual.getYear() - fechaBase.getYear();
+	    
+	    if (fechaActual.getMonthValue() < fechaBase.getMonthValue()) {
+	        diferencia--;
+	        
+	    } else if (fechaActual.getMonthValue() == fechaBase.getMonthValue() &&
+	            fechaActual.getDayOfMonth() < fechaBase.getDayOfMonth()) {
+	    	
+	        diferencia--;
+	    }
+	    return diferencia;
 	}
+	
+	public int calcularEdad(LocalDate fechaActual) {
+	   
+		return calcularDiferencia(fechaActual, this.fechaDeNacimiento);
+	}
+
+	public int calcularAntiguedad(LocalDate fechaActual) {
+	    
+		return calcularDiferencia(fechaActual, this.fechaDeIngreso);
+	}
+	
+	public abstract float calcularSueldo();
 	
 	// GETTERS Y SETTERS
 	public int getId() {
@@ -88,8 +100,8 @@ public abstract class Empleado {
 	// TO STRING 
 	@Override
 	public String toString() {
-		return " id : " + id + ", nombre : " + nombre + ", apellido : " + apellido + ", dni : " + dni
-				+ "\nfechaDeNacimiento : " + fechaDeNacimiento + ", fechaDeIngreso : " + fechaDeIngreso + ", sueldoBase : "
+		return " ID : " + id + ", Nombre : " + nombre + ", Apellido : " + apellido + ", DNI : " + dni
+				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso + ", SueldoBase : "
 				+ sueldoBase+"\n";
 	}
 	
