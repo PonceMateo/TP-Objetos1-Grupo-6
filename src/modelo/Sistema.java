@@ -93,6 +93,17 @@ public class Sistema {
 		}
 	}
 	
+	public void eliminarEmpleado(long DNI) throws Exception {
+		
+		Empleado e = this.traerEmpleado(DNI);
+		
+		if (e == null) {
+			throw new Exception("ERROR el Empleado a eliminar no existe\n");
+		}
+		
+		lstStaff.remove(e);
+	}
+	
 	public float calcularSueldo(long DNI) throws Exception {
 		
 		Empleado e = this.traerEmpleado(DNI);
