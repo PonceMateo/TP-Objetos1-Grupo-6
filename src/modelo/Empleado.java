@@ -88,8 +88,8 @@ public abstract class Empleado {
 	// TO STRING 
 	@Override
 	public String toString() {
-		return " id : " + id + ", nombre : " + nombre + ", apellido : " + apellido + ", dni : " + dni
-				+ "\nfechaDeNacimiento : " + fechaDeNacimiento + ", fechaDeIngreso : " + fechaDeIngreso + ", sueldoBase : "
+		return " ID : " + id + ", Nombre : " + nombre + ", Apellido : " + apellido + ", DNI : " + dni
+				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso + ", SueldoBase : "
 				+ sueldoBase+"\n";
 	}
 	

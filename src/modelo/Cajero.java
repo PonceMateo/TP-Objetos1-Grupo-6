@@ -13,6 +13,14 @@ public class Cajero extends Empleado {
 		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso);
 		this.turnoTrabajo = turnoTrabajo;
 	}
+	
+	// METODOS
+	public void modificar(String nombre, String apellido,String turnoTrabajo) {
+		
+		setNombre(nombre);
+		setApellido(apellido);
+		this.setTurnoTrabajo(turnoTrabajo);
+	}
 
 	// GETTERS Y SETTERS
 	public String getTurnoTrabajo() {
@@ -25,7 +33,7 @@ public class Cajero extends Empleado {
 	// TO STRING
 	@Override
 	public String toString() {
-		return "Cajero [turnoTrabajo : " + turnoTrabajo + "]";
+		return "Cajero:"+super.toString()+"TurnoTrabajo : " + turnoTrabajo + "]";
 	}
 	
 	

@@ -16,6 +16,15 @@ public class Cocinero extends Empleado {
 		this.plus = plus;
 	}
 	
+	// METODOS
+	public void modificar(String nombre, String apellido,String especialidad, float plus) {
+		
+		setNombre(nombre);
+		setApellido(apellido);
+		this.setPlus(plus);
+		this.setEspecialidad(especialidad);
+	}
+	
 	// GETTERS Y SETTERS
 	public String getEspecialidad() {
 		return especialidad;
@@ -33,7 +42,7 @@ public class Cocinero extends Empleado {
 	// TO STRING 
 	@Override
 	public String toString() {
-		return "Cocinero:"+super.toString()+"especialidad : " + especialidad + ", plus : " + plus + "]";
+		return "Cocinero:"+super.toString()+"Especialidad : " + especialidad + ", Plus : " + plus + "]";
 	}
 
 	
