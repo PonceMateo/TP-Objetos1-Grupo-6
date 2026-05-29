@@ -143,6 +143,21 @@ public class Sistema {
 		return e;
 	}
 	
+	public List<Empleado> traerEmpleadosEntreDosFechas(LocalDate fechaInicio, LocalDate FechaFin) {
+		
+		List<Empleado> aux = new ArrayList<Empleado>();
+		
+		for (Empleado e : lstStaff) {
+			
+			if ((e.getFechaDeNacimiento().isAfter(fechaInicio) || e.getFechaDeNacimiento().isEqual(fechaInicio))
+					&& (e.getFechaDeNacimiento().isBefore(FechaFin) || e.getFechaDeNacimiento().isEqual(FechaFin))) {
+				
+				aux.add(e);
+			}
+		}
+		return aux;
+	}
+	
 	// GETTERS
 	public List<Empleado> getLstStaff() {
 		return lstStaff;
