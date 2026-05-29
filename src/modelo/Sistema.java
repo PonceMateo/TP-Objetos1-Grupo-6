@@ -92,6 +92,30 @@ public class Sistema {
 			c.modificar(nombre, apellido, especialidad, plus);
 		}
 	}
+	
+	public float calcularSueldo(long DNI) throws Exception {
+		
+		Empleado e = this.traerEmpleado(DNI);
+		float resultado = 0;
+		
+		if (e == null) {
+			throw new Exception("ERROR el Empleado no existe\n");
+		}
+		
+		if (e instanceof Cajero) {
+			Cajero c = (Cajero)e;
+			
+			resultado = c.calcularSueldo();
+		}
+		
+		if (e instanceof Cocinero) {
+			Cocinero co = (Cocinero)e;
+			
+			resultado = co.calcularSueldo();
+		}
+		
+		return resultado;
+	}
 		
 	public Empleado traerEmpleado(long DNI) {
 		

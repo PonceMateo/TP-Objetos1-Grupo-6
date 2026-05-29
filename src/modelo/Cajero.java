@@ -21,6 +21,14 @@ public class Cajero extends Empleado {
 		setApellido(apellido);
 		this.setTurnoTrabajo(turnoTrabajo);
 	}
+	
+	public float calcularSueldo() {
+		
+		int antiguedad = calcularAntiguedad(LocalDate.now()); 
+		float sueldoFinal = sueldoBase + (antiguedad * 5000);
+		
+		return sueldoFinal;
+	}
 
 	// GETTERS Y SETTERS
 	public String getTurnoTrabajo() {

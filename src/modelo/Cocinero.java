@@ -25,6 +25,13 @@ public class Cocinero extends Empleado {
 		this.setEspecialidad(especialidad);
 	}
 	
+	public float calcularSueldo() {
+		
+		float sueldoFinal = sueldoBase + this.plus;
+		
+		return sueldoFinal;
+	}
+	
 	// GETTERS Y SETTERS
 	public String getEspecialidad() {
 		return especialidad;
