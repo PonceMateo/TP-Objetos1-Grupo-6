@@ -2,19 +2,19 @@ package modelo;
 
 import java.time.LocalDate;
 
-public class Empleado {
+public abstract class Empleado {
 
-	private int id;
-	private String nombre;
-	private String apellido;
-	private long dni;
-	private LocalDate fechaDeNacimiento;
-	private LocalDate fechaDeIngreso;
-	private float sueldoBase;
+	protected int id;
+	protected String nombre;
+	protected String apellido;
+	protected long dni;
+	protected LocalDate fechaDeNacimiento;
+	protected LocalDate fechaDeIngreso;
+	protected float sueldoBase;
 	
 	// CONSTRUCTOR 
 	public Empleado(int id, String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, float sueldoBase) {
+			LocalDate fechaDeIngreso) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -22,7 +22,23 @@ public class Empleado {
 		this.dni = dni;
 		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.fechaDeIngreso = fechaDeIngreso;
-		this.sueldoBase = sueldoBase;
+		this.sueldoBase = 100_000f;
+	}
+	
+	// METODOS
+	public int calcularEdad(LocalDate fechaActual) {
+		
+		int edad = fechaActual.getYear() - this.fechaDeNacimiento.getYear();
+		
+		if (fechaActual.getMonthValue() < this.fechaDeNacimiento.getMonthValue()) {
+			edad --;
+			
+		} else if (fechaActual.getMonthValue() == this.fechaDeNacimiento.getMonthValue() &&
+				fechaActual.getDayOfMonth() < this.fechaDeNacimiento.getDayOfMonth()) {
+			edad --;
+		}
+	
+		return edad;
 	}
 	
 	// GETTERS Y SETTERS
@@ -72,9 +88,9 @@ public class Empleado {
 	// TO STRING 
 	@Override
 	public String toString() {
-		return "Empleado [id : " + id + ", nombre : " + nombre + ", apellido : " + apellido + ", dni : " + dni
-				+ ", fechaDeNacimiento : " + fechaDeNacimiento + ", fechaDeIngreso : " + fechaDeIngreso + ", sueldoBase : "
-				+ sueldoBase + "]";
+		return " id : " + id + ", nombre : " + nombre + ", apellido : " + apellido + ", dni : " + dni
+				+ "\nfechaDeNacimiento : " + fechaDeNacimiento + ", fechaDeIngreso : " + fechaDeIngreso + ", sueldoBase : "
+				+ sueldoBase+"\n";
 	}
 	
 	
