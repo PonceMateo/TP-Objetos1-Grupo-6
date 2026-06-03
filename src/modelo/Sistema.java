@@ -113,18 +113,8 @@ public class Sistema {
 			throw new Exception("ERROR el Empleado no existe\n");
 		}
 		
-		if (e instanceof Cajero) {
-			Cajero c = (Cajero)e;
-			
-			resultado = c.calcularSueldo();
-		}
-		
-		if (e instanceof Cocinero) {
-			Cocinero co = (Cocinero)e;
-			
-			resultado = co.calcularSueldo();
-		}
-		
+		resultado = e.calcularSueldo();
+	
 		return resultado;
 	}
 		
