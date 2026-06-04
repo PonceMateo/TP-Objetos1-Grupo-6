@@ -14,7 +14,7 @@ public abstract class Empleado {
 	
 	// CONSTRUCTOR 
 	public Empleado(int id, String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso) {
+			LocalDate fechaDeIngreso, float sueldoBase) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -22,7 +22,7 @@ public abstract class Empleado {
 		this.dni = dni;
 		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.fechaDeIngreso = fechaDeIngreso;
-		this.sueldoBase = 100_000f;
+		this.sueldoBase = sueldoBase;
 	}
 	
 	// METODOS

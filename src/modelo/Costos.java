@@ -12,7 +12,7 @@ public class Costos {
 		this.costoPorSuperficie = costoPorSuperficie;
 		this.costoMontaje = costoMontaje;
 		this.costoUsoElectricidad = costoUsoElectricidad;
-		this.costoSueldoBase = costoSueldoBase;
+		this.costoSueldoBase = costoSueldoBase; // Este no lo saquen esta bien que se guarden los sueldo base en costos
 	}
 
 	// GETTERS Y SETTERS ------------------------------------------------------
