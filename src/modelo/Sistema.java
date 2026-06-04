@@ -16,7 +16,7 @@ public class Sistema {
 	
 	// METODOS
 	public boolean agregarCocinero(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, String especialidad, float plus) throws Exception {
+			LocalDate fechaDeIngreso, float sueldoBase ,CategoriaCocinero especialidad) throws Exception {
 		
 		if (this.traerEmpleado(dni) != null) {
 			throw new Exception("ERROR el empleado ya existe en el Staff\n");
@@ -29,7 +29,7 @@ public class Sistema {
 			id = lstStaff.get(lstStaff.size() -1).getId() +1;
 		}
 		
-		Cocinero c = new Cocinero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, especialidad, plus);
+		Cocinero c = new Cocinero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase ,especialidad);
 		
 		int edad = c.calcularEdad(LocalDate.now());
 		
@@ -41,7 +41,7 @@ public class Sistema {
 	}
 	
 	public boolean agregarCajero(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, String turnoTrabajo) throws Exception { 
+			LocalDate fechaDeIngreso, float sueldoBase,String turnoTrabajo) throws Exception { 
 		
 		if (this.traerEmpleado(dni) != null) {
 			throw new Exception("ERROR el empleado ya existe en el Staff\n");
@@ -54,7 +54,7 @@ public class Sistema {
 			id = lstStaff.get(lstStaff.size() -1).getId() +1;
 		}
 		
-		Cajero c = new Cajero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, turnoTrabajo);
+		Cajero c = new Cajero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase,turnoTrabajo);
 		
 		int edad = c.calcularEdad(LocalDate.now());
 		
@@ -65,7 +65,7 @@ public class Sistema {
 		return lstStaff.add(c);
 	}
 	
-	public void modificarCajero(long DNI, String nombre, String apellido,String turnoTrabajo) throws Exception{
+	public void modificarCajero(long DNI, String nombre, String apellido, float sueldoBase, String turnoTrabajo) throws Exception{
 		
 		Empleado e = this.traerEmpleado(DNI);
 		
@@ -75,11 +75,11 @@ public class Sistema {
 		
 		if(e instanceof Cajero) {
 			Cajero c = (Cajero)e;
-			c.modificar(nombre, apellido, turnoTrabajo);
+			c.modificar(nombre, apellido, sueldoBase, turnoTrabajo);
 		}
 	}
 	
-	public void modificarCocinero(long DNI, String nombre, String apellido,String especialidad, float plus) throws Exception {
+	public void modificarCocinero(long DNI, String nombre, String apellido, float sueldoBase ,CategoriaCocinero especialidad) throws Exception {
 		
 		Empleado e = this.traerEmpleado(DNI);
 		
@@ -89,7 +89,7 @@ public class Sistema {
 		
 		if(e instanceof Cocinero) {
 			Cocinero c = (Cocinero)e;
-			c.modificar(nombre, apellido, especialidad, plus);
+			c.modificar(nombre, apellido, sueldoBase, especialidad);
 		}
 	}
 	
@@ -139,8 +139,7 @@ public class Sistema {
 		
 		for (Empleado e : lstStaff) {
 			
-			if ((e.getFechaDeNacimiento().isAfter(fechaInicio) || e.getFechaDeNacimiento().isEqual(fechaInicio))
-					&& (e.getFechaDeNacimiento().isBefore(FechaFin) || e.getFechaDeNacimiento().isEqual(FechaFin))) {
+			if (Funciones.fechaEntreFechas(e.getFechaDeNacimiento(), fechaInicio, FechaFin)) {
 				
 				aux.add(e);
 			}

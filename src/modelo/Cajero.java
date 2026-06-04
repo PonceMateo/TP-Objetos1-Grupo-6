@@ -8,17 +8,18 @@ public class Cajero extends Empleado {
 
 	// CONSTRUCTOR 
 	public Cajero(int id, String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, String turnoTrabajo) {
+			LocalDate fechaDeIngreso, float sueldoBase,String turnoTrabajo) {
 		
-		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso);
+		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase);
 		this.turnoTrabajo = turnoTrabajo;
 	}
 	
 	// METODOS
-	public void modificar(String nombre, String apellido,String turnoTrabajo) {
+	public void modificar(String nombre, String apellido, float sueldoBase ,String turnoTrabajo) {
 		
 		setNombre(nombre);
 		setApellido(apellido);
+		setSueldoBase(sueldoBase);
 		this.setTurnoTrabajo(turnoTrabajo);
 	}
 	

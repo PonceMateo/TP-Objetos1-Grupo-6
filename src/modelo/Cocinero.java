@@ -4,52 +4,45 @@ import java.time.LocalDate;
 
 public class Cocinero extends Empleado {
 	
-	private String especialidad;
-	private float plus;
+	private CategoriaCocinero especialidad;
 	
 	// CONSTRUCTOR
 	public Cocinero(int id, String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, String especialidad, float plus) {
+			LocalDate fechaDeIngreso, float sueldoBase ,CategoriaCocinero especialidad) {
 		
-		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso);
+		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase);
 		this.especialidad = especialidad;
-		this.plus = plus;
 	}
 	
 	// METODOS
-	public void modificar(String nombre, String apellido,String especialidad, float plus) {
+	public void modificar(String nombre, String apellido, float sueldoBase ,CategoriaCocinero especialidad) {
 		
 		setNombre(nombre);
 		setApellido(apellido);
-		this.setPlus(plus);
+		setSueldoBase(sueldoBase);
 		this.setEspecialidad(especialidad);
 	}
 	
 	public float calcularSueldo() {
 		
-		float sueldoFinal = sueldoBase + this.plus;
+		float sueldoFinal = sueldoBase + this.especialidad.getPlus();
 		
 		return sueldoFinal;
 	}
 	
 	// GETTERS Y SETTERS
-	public String getEspecialidad() {
+	public CategoriaCocinero getEspecialidad() {
 		return especialidad;
 	}
-	public void setEspecialidad(String especialidad) {
+
+	public void setEspecialidad(CategoriaCocinero especialidad) {
 		this.especialidad = especialidad;
-	}
-	public float getPlus() {
-		return plus;
-	}
-	public void setPlus(float plus) {
-		this.plus = plus;
 	}
 	
 	// TO STRING 
 	@Override
 	public String toString() {
-		return "Cocinero:"+super.toString()+"Especialidad : " + especialidad + ", Plus : " + plus + "]";
+		return "Cocinero:"+super.toString()+"Especialidad : " + especialidad + ", Plus : " + especialidad.getPlus() + "]";
 	}
 
 	
