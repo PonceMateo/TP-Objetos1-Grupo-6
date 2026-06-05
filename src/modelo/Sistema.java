@@ -177,8 +177,8 @@ public class Sistema {
 	}
 	
 	//PuestoDesarmable
-	public boolean altaUnidadVenta(String codigo, String nombreComercial, float superficieEnM2, Empleado responsable, int cantCarpas, LocalTime tiempoMontaje) throws Exception {
-		if(traerUnidadVenta(codigo) != null) {
+	public boolean altaUnidadVenta(String codigo, String nombreComercial, float superficieEnM2, Empleado responsable, int cantCarpas, float tiempoMontaje) throws Exception {
+		if(this.traerUnidadVenta(codigo) != null) {
 			throw new Exception("La unidad de venta con código "+ codigo + "ya existe");
 		}
 		int id = 1;
