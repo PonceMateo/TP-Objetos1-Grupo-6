@@ -1,17 +1,19 @@
 package modelo;
 
+import java.time.LocalTime;
+
 public class PuestoDesarmable extends UnidadVenta {
 	private int cantCarpas;
-	private Boolean requiereElectricidad;
-	
+	private float tiempoMontaje;
 	
 
 	public PuestoDesarmable(int id, String codigo, String nombreComercial, float superficieEnM2, Empleado responsable,
-			int cantCarpas, Boolean requiereElectricidad) {
+			int cantCarpas, float tiempoMontaje) {
 		super(id, codigo, nombreComercial, superficieEnM2, responsable);
 		this.cantCarpas = cantCarpas;
-		this.requiereElectricidad = requiereElectricidad;
+		this.tiempoMontaje = tiempoMontaje;
 	}
+
 	
 	//GETTERS Y SETTERS ------------------------------------------
 	public int getCantCarpas() {
@@ -20,14 +22,33 @@ public class PuestoDesarmable extends UnidadVenta {
 	public void setCantCarpas(int cantCarpas) {
 		this.cantCarpas = cantCarpas;
 	}
-	public Boolean getRequiereElectricidad() {
-		return requiereElectricidad;
+
+	public float getTiempoMontaje() {
+		return tiempoMontaje;
 	}
-	public void setRequiereElectricidad(Boolean requiereElectricidad) {
-		this.requiereElectricidad = requiereElectricidad;
+	public void setTiempoMontaje(float tiempoMontaje) {
+		this.tiempoMontaje = tiempoMontaje;
 	}
+
 	//------------------------------------------------------------
 	
-	
+
+	@Override
+	public boolean validarCodigo(String codigo) {
+		boolean valido = false;
+		
+	    if (codigo != null && codigo.length() == 7) { //Evitamos nullPointer antes de crear SubString
+	      
+	        String letrasCodigo = codigo.substring(0, 2); //PD
+	        String numerosCodigo = codigo.substring(2); //XXXXX
+	        
+	        if (Funciones.verificarStringsNumericos(numerosCodigo) && letrasCodigo.equalsIgnoreCase("PD")) {
+	            valido = true;
+	        }
+	        
+	    } 
+
+	    return valido;
+	}
 	
 }

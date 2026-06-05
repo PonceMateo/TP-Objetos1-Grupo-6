@@ -1,17 +1,21 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sistema {
-	
+	private List<Festival> lstFestival;
 	private List<Empleado> lstStaff;
+	private List<UnidadVenta> lstUnidadVenta;
 
 	// COSNTRUCTOR
 	public Sistema() {
 		//super();
 		this.lstStaff = new ArrayList<Empleado>();
+		this.lstFestival = new ArrayList<>();
+		this.lstUnidadVenta = new ArrayList<>();
 	}
 	
 	// METODOS
@@ -158,5 +162,59 @@ public class Sistema {
 		return "Sistema [lstStaff : " + lstStaff + "]";
 	}
 
-
+	//FoodTruck
+	public boolean altaUnidadVenta(String codigo, String nombreComercial, float superficieEnM2, Empleado responsable, String patente, Boolean requiereElectricidad) throws Exception {
+		if(traerUnidadVenta(codigo) != null) {
+			throw new Exception("La unidad de venta con código "+ codigo + "ya existe");
+		}
+		int id = 1;
+		if(!lstUnidadVenta.isEmpty()) {
+			id = lstUnidadVenta.get(lstUnidadVenta.size()-1).getId() +1;
+		}
+		
+		UnidadVenta u = new FoodTruck(id, codigo, nombreComercial, superficieEnM2, responsable, patente, requiereElectricidad);
+		return lstUnidadVenta.add(u);
+	}
+	
+	//PuestoDesarmable
+	public boolean altaUnidadVenta(String codigo, String nombreComercial, float superficieEnM2, Empleado responsable, int cantCarpas, float tiempoMontaje) throws Exception {
+		if(this.traerUnidadVenta(codigo) != null) {
+			throw new Exception("La unidad de venta con código "+ codigo + "ya existe");
+		}
+		int id = 1;
+		if(!lstUnidadVenta.isEmpty()) {
+			id = lstUnidadVenta.get(lstUnidadVenta.size()-1).getId() +1;
+		}
+		
+		UnidadVenta u = new PuestoDesarmable(id, codigo, nombreComercial, superficieEnM2, responsable, cantCarpas, tiempoMontaje);
+		return lstUnidadVenta.add(u);
+	}
+	
+	public UnidadVenta traerUnidadVenta(String codigo) {
+		UnidadVenta u = null;
+		
+		boolean existe = false;
+		int i = 0;
+		
+		while(!existe && i<lstUnidadVenta.size()) {
+			if(lstUnidadVenta.get(i).getCodigo().equals(codigo)){
+				existe = true;
+				u = lstUnidadVenta.get(i);
+			}
+			i++;
+		}
+		
+		return u;
+	}
+	
+	public boolean bajaUnidadVenta(String codigo) throws Exception {
+		UnidadVenta u = this.traerUnidadVenta(codigo);
+		if (u == null) {
+			throw new Exception("ERROR la Unidad de Venta a eliminar no existe\n");
+		}
+		
+		return lstUnidadVenta.remove(u);
+		//TODO: Debería removerse de la lista del festival tambien?
+	}
+	
 }
