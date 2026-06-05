@@ -4,11 +4,11 @@ import java.time.LocalTime;
 
 public class PuestoDesarmable extends UnidadVenta {
 	private int cantCarpas;
-	private LocalTime tiempoMontaje;
+	private float tiempoMontaje;
 	
 
 	public PuestoDesarmable(int id, String codigo, String nombreComercial, float superficieEnM2, Empleado responsable,
-			int cantCarpas, LocalTime tiempoMontaje) {
+			int cantCarpas, float tiempoMontaje) {
 		super(id, codigo, nombreComercial, superficieEnM2, responsable);
 		this.cantCarpas = cantCarpas;
 		this.tiempoMontaje = tiempoMontaje;
@@ -23,10 +23,10 @@ public class PuestoDesarmable extends UnidadVenta {
 		this.cantCarpas = cantCarpas;
 	}
 
-	public LocalTime getTiempoMontaje() {
+	public float getTiempoMontaje() {
 		return tiempoMontaje;
 	}
-	public void setTiempoMontaje(LocalTime tiempoMontaje) {
+	public void setTiempoMontaje(float tiempoMontaje) {
 		this.tiempoMontaje = tiempoMontaje;
 	}
 
