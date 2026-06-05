@@ -107,11 +107,6 @@ public abstract class Empleado {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(apellido, Long.valueOf(dni), Integer.valueOf(id), nombre);
-	}
-
-	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
