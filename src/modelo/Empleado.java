@@ -1,6 +1,7 @@
 package modelo;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Empleado {
 
@@ -103,6 +104,24 @@ public abstract class Empleado {
 		return " ID : " + id + ", Nombre : " + nombre + ", Apellido : " + apellido + ", DNI : " + dni
 				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso + ", SueldoBase : "
 				+ sueldoBase+"\n";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellido, Long.valueOf(dni), Integer.valueOf(id), nombre);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empleado other = (Empleado) obj;
+		return Objects.equals(apellido, other.apellido) && dni == other.dni && id == other.id
+				&& Objects.equals(nombre, other.nombre);
 	}
 	
 	
