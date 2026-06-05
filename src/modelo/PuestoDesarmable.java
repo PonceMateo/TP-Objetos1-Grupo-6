@@ -1,17 +1,19 @@
 package modelo;
 
+import java.time.LocalTime;
+
 public class PuestoDesarmable extends UnidadVenta {
 	private int cantCarpas;
-	private Boolean requiereElectricidad;
-	
+	private LocalTime tiempoMontaje;
 	
 
 	public PuestoDesarmable(int id, String codigo, String nombreComercial, float superficieEnM2, Empleado responsable,
-			int cantCarpas, Boolean requiereElectricidad) {
+			int cantCarpas, LocalTime tiempoMontaje) {
 		super(id, codigo, nombreComercial, superficieEnM2, responsable);
 		this.cantCarpas = cantCarpas;
-		this.requiereElectricidad = requiereElectricidad;
+		this.tiempoMontaje = tiempoMontaje;
 	}
+
 	
 	//GETTERS Y SETTERS ------------------------------------------
 	public int getCantCarpas() {
@@ -20,14 +22,17 @@ public class PuestoDesarmable extends UnidadVenta {
 	public void setCantCarpas(int cantCarpas) {
 		this.cantCarpas = cantCarpas;
 	}
-	public Boolean getRequiereElectricidad() {
-		return requiereElectricidad;
+
+	public LocalTime getTiempoMontaje() {
+		return tiempoMontaje;
 	}
-	public void setRequiereElectricidad(Boolean requiereElectricidad) {
-		this.requiereElectricidad = requiereElectricidad;
+	public void setTiempoMontaje(LocalTime tiempoMontaje) {
+		this.tiempoMontaje = tiempoMontaje;
 	}
+
 	//------------------------------------------------------------
 	
+
 	@Override
 	public boolean validarCodigo(String codigo) {
 		boolean valido = false;
