@@ -14,10 +14,10 @@ public abstract class UnidadVenta {
 	protected List<Plato> lstPlatos; //Menu
 	
 	
-	public UnidadVenta(int id, String codigo, String nombreComercial, float superficieEnM2, Empleado responsable) {
+	public UnidadVenta(int id, String codigo, String nombreComercial, float superficieEnM2, Empleado responsable){
 		super();
 		this.id = id;
-		this.setCodigo(codigo); //TODO: Validar código aca dentro
+		this.setCodigo(codigo); //Código de tipo: PD00001 (PuestoDesarmable) || FT00001 (FoodTruck)
 		this.nombreComercial = nombreComercial;
 		this.superficieEnM2 = superficieEnM2;
 		this.responsable = responsable;
@@ -39,8 +39,12 @@ public abstract class UnidadVenta {
 	public String getCodigo() {
 		return Codigo;
 	}
-	public void setCodigo(String codigo) {
-		Codigo = codigo;
+	public void setCodigo(String codigo){
+		if(this.validarCodigo(codigo)) {
+			this.Codigo = codigo.toUpperCase();
+		}else {
+			throw new IllegalArgumentException("El código " + codigo + "no es válido");
+		}
 	}
 	public String getNombreComercial() {
 		return nombreComercial;
@@ -76,6 +80,6 @@ public abstract class UnidadVenta {
 		return null;
 	}
 	
-	
+	public abstract boolean validarCodigo(String codigo);
 	
 }

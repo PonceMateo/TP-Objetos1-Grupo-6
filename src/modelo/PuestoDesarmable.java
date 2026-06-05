@@ -28,6 +28,22 @@ public class PuestoDesarmable extends UnidadVenta {
 	}
 	//------------------------------------------------------------
 	
-	
+	@Override
+	public boolean validarCodigo(String codigo) {
+		boolean valido = false;
+		
+	    if (codigo != null && codigo.length() == 7) { //Evitamos nullPointer antes de crear SubString
+	      
+	        String letrasCodigo = codigo.substring(0, 2); //PD
+	        String numerosCodigo = codigo.substring(2); //XXXXX
+	        
+	        if (Funciones.verificarStringsNumericos(numerosCodigo) && letrasCodigo.equalsIgnoreCase("PD")) {
+	            valido = true;
+	        }
+	        
+	    } 
+
+	    return valido;
+	}
 	
 }

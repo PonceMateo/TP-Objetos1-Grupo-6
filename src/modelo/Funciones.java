@@ -21,4 +21,17 @@ public class Funciones {
 	    return !(horaAComparar.isAfter(horaHasta) || horaAComparar.isBefore(horaDesde));
 	}
 	
+	
+	public static boolean verificarStringsNumericos(String texto) {
+		boolean valido = (texto != null);
+		int i = 0;
+		while(valido && i<texto.length()) {
+			 if (!Character.isDigit(texto.charAt(i))) {
+		            valido = false;
+		        }
+			 i++;
+		}
+	    
+	    return valido;
+	}
 }
