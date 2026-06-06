@@ -15,16 +15,15 @@ public class Festival {
 	private List<UnidadVenta> lstUnidadesDelFestival;
 	
 	
-	
 	public Festival(int id, String nombre, String temporada, LocalDate fechaInicio, LocalDate fechaFin, 
-			float costoSuperficie, float costoMontaje, float costoUsoElectricidad, float costoSueldoBase) {
+			float costoSuperficie, float costoMontaje, float costoUsoElectricidad, float costoSueldoBase, float costoAntiguedad) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.temporada = temporada;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		setCostos(costoSuperficie, costoMontaje, costoUsoElectricidad, costoSueldoBase); //TODO: Agregar CostoAntiguedad
+		setCostos(costoSuperficie, costoMontaje, costoUsoElectricidad, costoSueldoBase, costoAntiguedad); //TODO: Agregar CostoAntiguedad
 		this.lstUnidadesDelFestival = new ArrayList<>(); //No manejar IDs, lo maneja el sistema.
 	}
 
@@ -62,8 +61,8 @@ public class Festival {
 	public Costos getCostos() {
 		return costos;
 	}
-	public void setCostos(float costoSuperficie, float costoMontaje, float costoUsoElectricidad, float costoSueldoBase) {
-		this.costos = new Costos(costoSuperficie, costoMontaje, costoUsoElectricidad, costoSueldoBase);
+	public void setCostos(float costoSuperficie, float costoMontaje, float costoUsoElectricidad, float costoSueldoBase, float costoAntiguedad) {
+		this.costos = new Costos(costoSuperficie, costoMontaje, costoUsoElectricidad, costoSueldoBase, costoAntiguedad);
 	}
 	public List<UnidadVenta> getLstUnidadesDelFestival() {
 		return lstUnidadesDelFestival;
@@ -132,4 +131,48 @@ public class Festival {
 		
 		return u;
 	}
+	
+	public Empleado traerEmpleado(long dni) {
+		
+		Empleado encontrado = null;
+		int i = 0;
+		
+		while (encontrado == null && i < lstUnidadesDelFestival.size()) {
+			
+			for (Empleado e : lstUnidadesDelFestival.get(i).getLstEmpleados()) {
+				
+				if (e.getDni() == dni) {
+					encontrado = e;
+				}
+			}
+			i++;
+		}
+		return encontrado;
+	}
+	
+	public double calcularSueldo(long dni) throws Exception {
+		
+		Empleado e = traerEmpleado(dni);
+		double resultado = 0;
+		
+		if (e == null) {
+			throw new Exception("ERROR el empleado no existe, no se puede calcular el sueldo");
+		}
+		
+		if (e instanceof Cocinero) {
+			Cocinero c = (Cocinero)e;
+			
+			resultado = getCostos().getCostoSueldoBase() + c.getEspecialidad().getPlus();
+		}
+		
+		if (e instanceof Cajero) {
+			Cajero ca = (Cajero)e;
+			
+			int anio = ca.calcularAntiguedad(LocalDate.now());
+			resultado = getCostos().getCostoSueldoBase() + ( anio * getCostos().getCostoAntiguedad() );
+		}
+		
+		return resultado;
+	}
+	
 }
