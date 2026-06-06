@@ -19,8 +19,8 @@ public class Sistema {
 	}
 	
 	// METODOS
-	public boolean agregarCocinero(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, float sueldoBase ,CategoriaCocinero especialidad) throws Exception {
+	public boolean altaEmpladoStaff(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
+			LocalDate fechaDeIngreso , CategoriaCocinero especialidad) throws Exception {
 		
 		if (this.traerEmpleado(dni) != null) {
 			throw new Exception("ERROR el empleado ya existe en el Staff\n");
@@ -33,7 +33,7 @@ public class Sistema {
 			id = lstStaff.get(lstStaff.size() -1).getId() +1;
 		}
 		
-		Cocinero c = new Cocinero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase ,especialidad);
+		Cocinero c = new Cocinero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, especialidad);
 		
 		int edad = c.calcularEdad(LocalDate.now());
 		
@@ -44,8 +44,8 @@ public class Sistema {
 		return lstStaff.add(c);
 	}
 	
-	public boolean agregarCajero(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, float sueldoBase,String turnoTrabajo) throws Exception { 
+	public boolean altaEmpladoStaff(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
+			LocalDate fechaDeIngreso, String turnoTrabajo) throws Exception { 
 		
 		if (this.traerEmpleado(dni) != null) {
 			throw new Exception("ERROR el empleado ya existe en el Staff\n");
@@ -58,7 +58,7 @@ public class Sistema {
 			id = lstStaff.get(lstStaff.size() -1).getId() +1;
 		}
 		
-		Cajero c = new Cajero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase,turnoTrabajo);
+		Cajero c = new Cajero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, turnoTrabajo);
 		
 		int edad = c.calcularEdad(LocalDate.now());
 		
@@ -69,35 +69,7 @@ public class Sistema {
 		return lstStaff.add(c);
 	}
 	
-	public void modificarCajero(long DNI, String nombre, String apellido, float sueldoBase, String turnoTrabajo) throws Exception{
-		
-		Empleado e = this.traerEmpleado(DNI);
-		
-		if (e == null) {
-			throw new Exception("ERROR el Empleado a modificar no existe\n");
-		}
-		
-		if(e instanceof Cajero) {
-			Cajero c = (Cajero)e;
-			c.modificar(nombre, apellido, sueldoBase, turnoTrabajo);
-		}
-	}
-	
-	public void modificarCocinero(long DNI, String nombre, String apellido, float sueldoBase ,CategoriaCocinero especialidad) throws Exception {
-		
-		Empleado e = this.traerEmpleado(DNI);
-		
-		if (e == null) {
-			throw new Exception("ERROR el Empleado a modificar no existe\n");
-		}
-		
-		if(e instanceof Cocinero) {
-			Cocinero c = (Cocinero)e;
-			c.modificar(nombre, apellido, sueldoBase, especialidad);
-		}
-	}
-	
-	public void eliminarEmpleado(long DNI) throws Exception {
+	public void bajaEmpleado(long DNI) throws Exception {
 		
 		Empleado e = this.traerEmpleado(DNI);
 		
@@ -106,20 +78,6 @@ public class Sistema {
 		}
 		
 		lstStaff.remove(e);
-	}
-	
-	public float calcularSueldo(long DNI) throws Exception {
-		
-		Empleado e = this.traerEmpleado(DNI);
-		float resultado = 0;
-		
-		if (e == null) {
-			throw new Exception("ERROR el Empleado no existe\n");
-		}
-		
-		resultado = e.calcularSueldo();
-	
-		return resultado;
 	}
 		
 	public Empleado traerEmpleado(long DNI) {
@@ -137,13 +95,13 @@ public class Sistema {
 		return e;
 	}
 	
-	public List<Empleado> traerEmpleadosEntreDosFechas(LocalDate fechaInicio, LocalDate FechaFin) {
+	public List<Empleado> filtrarEdadEmpelado(LocalDate fechaDesde, LocalDate FechaHasta) {
 		
 		List<Empleado> aux = new ArrayList<Empleado>();
 		
 		for (Empleado e : lstStaff) {
 			
-			if (Funciones.fechaEntreFechas(e.getFechaDeNacimiento(), fechaInicio, FechaFin)) {
+			if (Funciones.fechaEntreFechas(e.getFechaDeNacimiento(), fechaDesde, FechaHasta)) {
 				
 				aux.add(e);
 			}
