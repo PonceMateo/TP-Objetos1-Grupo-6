@@ -166,6 +166,31 @@ public class Sistema {
 		
 		return u;
 	}
+	public boolean AltaFestival(String nombre, String temporada, LocalDate fechaInicio 
+			,LocalDate fechaFin, float costoPorSuperficie, float costoMontaje
+			, float costoUsoElectricidad,  float sueldoBase,  float costoAntiguedad)throws Exception {
+		if(traerFestival(nombre, temporada)!=null) {
+			throw new Exception("Error El Festival ingresado ya existe\n");
+		}
+		int id = 1;
+		if(!lstFestival.isEmpty()) {
+			id = lstFestival.get(lstFestival.size()-1).getId() +1;
+		}
+		Festival nuevo = new Festival(id, nombre, temporada, fechaInicio, fechaFin, costoPorSuperficie
+				, costoMontaje, costoUsoElectricidad, sueldoBase, costoAntiguedad);
+		return lstFestival.add(nuevo);
+	}
+	
+	
+	public Festival traerFestival(String nombre, String temporada) {
+	Festival encontrado=null;
+	for(Festival f: lstFestival) {
+		if(f.getNombre().equalsIgnoreCase(nombre) && f.getTemporada().equalsIgnoreCase(temporada)) {
+			encontrado=f;
+		}
+	}
+	return encontrado;
+	}
 	
 	public boolean bajaUnidadVenta(String codigo) throws Exception {
 		UnidadVenta u = this.traerUnidadVenta(codigo);
