@@ -8,27 +8,14 @@ public class Cocinero extends Empleado {
 	
 	// CONSTRUCTOR
 	public Cocinero(int id, String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, float sueldoBase ,CategoriaCocinero especialidad) {
+			LocalDate fechaDeIngreso, CategoriaCocinero especialidad) {
 		
-		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, sueldoBase);
+		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso);
 		this.especialidad = especialidad;
 	}
 	
 	// METODOS
-	public void modificar(String nombre, String apellido, float sueldoBase ,CategoriaCocinero especialidad) {
-		
-		setNombre(nombre);
-		setApellido(apellido);
-		setSueldoBase(sueldoBase);
-		this.setEspecialidad(especialidad);
-	}
-	
-	public float calcularSueldo() {
-		
-		float sueldoFinal = sueldoBase + this.especialidad.getPlus();
-		
-		return sueldoFinal;
-	}
+
 	
 	// GETTERS Y SETTERS
 	public CategoriaCocinero getEspecialidad() {

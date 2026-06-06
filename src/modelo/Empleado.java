@@ -10,11 +10,10 @@ public abstract class Empleado {
 	protected long dni;
 	protected LocalDate fechaDeNacimiento;
 	protected LocalDate fechaDeIngreso;
-	protected float sueldoBase;
 	
 	// CONSTRUCTOR 
 	public Empleado(int id, String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso, float sueldoBase) {
+			LocalDate fechaDeIngreso) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -22,7 +21,6 @@ public abstract class Empleado {
 		this.dni = dni;
 		this.fechaDeNacimiento = fechaDeNacimiento;
 		this.fechaDeIngreso = fechaDeIngreso;
-		this.sueldoBase = sueldoBase;
 	}
 	
 	// METODOS
@@ -50,9 +48,7 @@ public abstract class Empleado {
 	    
 		return calcularDiferencia(fechaActual, this.fechaDeIngreso);
 	}
-	
-	public abstract float calcularSueldo();
-	
+		
 	// GETTERS Y SETTERS
 	public int getId() {
 		return id;
@@ -90,19 +86,12 @@ public abstract class Empleado {
 	public void setFechaDeIngreso(LocalDate fechaDeIngreso) {
 		this.fechaDeIngreso = fechaDeIngreso;
 	}
-	public float getSueldoBase() {
-		return sueldoBase;
-	}
-	public void setSueldoBase(float sueldoBase) {
-		this.sueldoBase = sueldoBase;
-	}
 	
 	// TO STRING 
 	@Override
 	public String toString() {
 		return " ID : " + id + ", Nombre : " + nombre + ", Apellido : " + apellido + ", DNI : " + dni
-				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso + ", SueldoBase : "
-				+ sueldoBase+"\n";
+				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso +"\n";
 	}
 	
 	
