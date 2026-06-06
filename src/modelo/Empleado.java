@@ -95,6 +95,7 @@ public abstract class Empleado {
 				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso +"\n";
 	}
 
+	// EQUALS
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

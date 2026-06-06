@@ -19,6 +19,8 @@ public class Sistema {
 	}
 	
 	// METODOS
+	
+	// EMPLEADO
 	public boolean altaEmpladoStaff(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
 			LocalDate fechaDeIngreso , CategoriaCocinero especialidad) throws Exception {
 		
@@ -173,6 +175,8 @@ public class Sistema {
 		
 		return lstUnidadVenta.remove(u);
 		//TODO: Debería removerse de la lista del festival tambien?
+		
+		// en teoria si esta con agregacion en festival se deberia de eliminar creo ?
 	}
 	
 }

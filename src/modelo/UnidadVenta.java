@@ -96,4 +96,19 @@ public abstract class UnidadVenta {
 	
 	public abstract boolean validarCodigo(String codigo);
 	
+	public boolean agregarEmpleado(Empleado empleado) throws Exception {
+		
+		for (Empleado e : lstEmpleados) {
+			
+			if (e.getDni() == empleado.getDni()) {
+				throw new Exception("ERROR el empleado que intenta agregar ya existe en la lista");
+			}
+		}
+		return lstEmpleados.add(empleado);
+	}
+	
+	
+	
+	
+	
 }
