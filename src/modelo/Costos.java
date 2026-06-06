@@ -5,14 +5,16 @@ public class Costos {
 	private float costoMontaje;
 	private float costoUsoElectricidad;
 	private float costoSueldoBase;
+	private float costoAntiguedad;
 	
 	
-	public Costos(float costoPorSuperficie, float costoMontaje, float costoUsoElectricidad, float costoSueldoBase) {
+	public Costos(float costoPorSuperficie, float costoMontaje, float costoUsoElectricidad, float costoSueldoBase, float costoAntiguedad) {
 		super();
 		this.costoPorSuperficie = costoPorSuperficie;
 		this.costoMontaje = costoMontaje;
 		this.costoUsoElectricidad = costoUsoElectricidad;
 		this.costoSueldoBase = costoSueldoBase; // Este no lo saquen esta bien que se guarden los sueldo base en costos
+		this.costoAntiguedad = costoAntiguedad;
 	}
 
 	// GETTERS Y SETTERS ------------------------------------------------------
@@ -46,6 +48,13 @@ public class Costos {
 
 	public void setCostoSueldoBase(float costoSueldoBase) {
 		this.costoSueldoBase = costoSueldoBase;
+	}
+	public float getCostoAntiguedad() {
+		return costoAntiguedad;
+	}
+
+	public void setCostoAntiguedad(float costoAntiguedad) {
+		this.costoAntiguedad = costoAntiguedad;
 	}
 	//------------------------------------------------------------------------
 }
