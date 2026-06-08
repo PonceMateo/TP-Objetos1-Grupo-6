@@ -166,6 +166,7 @@ public class Sistema {
 		
 		return u;
 	}
+
 	public boolean AltaFestival(String nombre, String temporada, LocalDate fechaInicio 
 			,LocalDate fechaFin, float costoPorSuperficie, float costoMontaje
 			, float costoUsoElectricidad,  float sueldoBase,  float costoAntiguedad)throws Exception {
@@ -176,8 +177,7 @@ public class Sistema {
 		if(!lstFestival.isEmpty()) {
 			id = lstFestival.get(lstFestival.size()-1).getId() +1;
 		}
-		Festival nuevo = new Festival(id, nombre, temporada, fechaInicio, fechaFin, costoPorSuperficie
-				, costoMontaje, costoUsoElectricidad, sueldoBase, costoAntiguedad);
+		Festival nuevo = new Festival(id, nombre, temporada, fechaInicio, fechaFin, costoPorSuperficie, costoMontaje, costoUsoElectricidad, sueldoBase, costoAntiguedad);
 		return lstFestival.add(nuevo);
 	}
 	
