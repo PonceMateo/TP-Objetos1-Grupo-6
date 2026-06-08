@@ -1,5 +1,6 @@
 package modelo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -105,6 +106,49 @@ public abstract class UnidadVenta {
 			}
 		}
 		return lstEmpleados.add(empleado);
+	}
+	
+	public boolean agregarPlato(String nombrePlato,float precioVenta,float costoProduccion) throws Exception {
+
+		if(traerPlato(nombrePlato) != null) {
+			throw new Exception("El plato ya existe");
+		}
+
+		int id = 1;
+
+		if(!lstPlatos.isEmpty()) {
+			id = lstPlatos.get(lstPlatos.size()-1).getId() + 1;
+		}
+
+		Plato plato = new Plato(id, nombrePlato, precioVenta, costoProduccion);
+		return lstPlatos.add(plato);
+	}
+	
+	public Plato traerPlato(String nombre) {
+
+		Plato plato = null;
+		int i = 0;
+
+		while(plato == null && i < lstPlatos.size()) {
+			if(lstPlatos.get(i).getNombrePlato().equalsIgnoreCase(nombre)) {
+				plato = lstPlatos.get(i);
+			}
+			i++;
+		}
+		return plato;
+	}
+	
+	public boolean agregarPedido(Festival festival, LocalDate fecha) {
+
+		int id = 1;
+
+		if(!lstPedidos.isEmpty()) {
+			id = lstPedidos.get(lstPedidos.size() - 1).getId() + 1;
+		}
+
+		Pedido pedido = new Pedido(id, fecha, festival, this);
+		
+		return lstPedidos.add(pedido);
 	}
 	
 	

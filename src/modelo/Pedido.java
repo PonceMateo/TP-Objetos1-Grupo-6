@@ -12,7 +12,7 @@ public class Pedido {
 	private List<ItemPedido> lstItems;
 	
 	
-	public Pedido(int id, LocalDate fecha, Festival festival, UnidadVenta unidadVenta, List<ItemPedido> lstItems) {
+	public Pedido(int id, LocalDate fecha, Festival festival, UnidadVenta unidadVenta) {
 		super();
 		this.id = id;
 		this.fecha = fecha;
@@ -52,5 +52,37 @@ public class Pedido {
 	}
 
 	//------------------------------------------------------------
+	
+	public boolean agregarItem(int cantidad, Plato plato) {
+
+		if(cantidad <= 0 || plato == null) {
+			return false;
+		}
+
+		int id = 1;
+
+		if(!lstItems.isEmpty()) {
+			id = lstItems.get(lstItems.size() - 1).getId() + 1;
+		}
+
+		ItemPedido item = new ItemPedido(id, cantidad, plato);
+
+		return lstItems.add(item);
+	}
+	
+	public double calcularTotal() {
+
+		double total = 0;
+
+		for(ItemPedido item : lstItems) {
+			total += item.calcularSubtotal();
+		}
+
+		return total;
+	}
+	
+	private boolean validarPedido() {
+		return fecha != null && festival != null && unidadVenta != null;
+	}
 	
 }

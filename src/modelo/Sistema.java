@@ -179,4 +179,69 @@ public class Sistema {
 		// en teoria si esta con agregacion en festival se deberia de eliminar creo ?
 	}
 	
+	//======================================================================================
+	
+	public boolean agregarPedido(String codigoUnidad, Festival festi,LocalDate fecha) throws Exception {
+
+		UnidadVenta unidad = traerUnidadVenta(codigoUnidad);
+
+		if(unidad == null) {
+			throw new Exception("La unidad de venta no existe");
+		}
+
+		Festival festival = traerFestival(festi.getNombre(), festi.getTemporada());
+
+		if(festival == null) {
+			throw new Exception("El festival no existe");
+		}
+
+		return unidad.agregarPedido(festival, fecha);
+	}
+	
+	public double calculoRentabilidadNeta(UnidadVenta unidad,Festival festival) throws Exception {
+
+	    double ingresos = 0;
+	    double costoPlatos = 0;
+	    double sueldos = 0;
+
+	    for(Pedido p : unidad.getLstPedidos()) {
+	        ingresos += p.calcularTotal();
+	        for(ItemPedido item : p.getLstItems()) {
+	            costoPlatos += item.getCantidad() * item.getPlato().getCostoProduccion();
+	        }
+	    }
+
+	    for(Empleado e : unidad.getLstEmpleados()) {
+	        sueldos += festival.calcularSueldo(e.getDni());
+	    }
+
+	    double canon = festival.calcularCanon(unidad);
+
+	    return ingresos - costoPlatos - sueldos - canon;
+	}
+	
+	public double calculoRentabilidadNeta(UnidadVenta unidad, Festival festival, LocalDate fechaDesde, LocalDate fechaHasta) throws Exception {
+
+	    double ingresos = 0;
+	    double costoPlatos = 0;
+	    double sueldos = 0;
+
+	    for(Pedido p : unidad.getLstPedidos()) {
+	        if(Funciones.fechaEntreFechas(p.getFecha(),fechaDesde,fechaHasta)) {
+	            ingresos += p.calcularTotal();
+	            for(ItemPedido item : p.getLstItems()) {
+	                costoPlatos += item.getCantidad() * item.getPlato().getCostoProduccion();
+	            }
+	        }
+	    }
+
+	    for(Empleado e : unidad.getLstEmpleados()) {
+	        sueldos += festival.calcularSueldo(e.getDni());
+	    }
+
+	    double canon = festival.calcularCanon(unidad);
+
+	    return ingresos - costoPlatos - sueldos - canon;
+	}
+	
 }

@@ -33,5 +33,9 @@ public class ItemPedido {
 		this.plato = plato;
 	}
 	
+	public double calcularSubtotal() {
+		return cantidad * plato.getPrecioVenta();
+	}
+	
 	
 }
