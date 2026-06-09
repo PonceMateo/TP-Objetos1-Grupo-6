@@ -199,12 +199,8 @@ public class Sistema {
 		}
 		
 		return lstUnidadVenta.remove(u);
-		//TODO: Debería removerse de la lista del festival tambien?
-		
-		// en teoria si esta con agregacion en festival se deberia de eliminar creo ?
 	}
 	
-	//======================================================================================
 	
 	public boolean agregarPedido(String codigoUnidad, Festival festi,LocalDate fecha) throws Exception {
 
@@ -269,4 +265,96 @@ public class Sistema {
 	    return ingresos - costoPlatos - sueldos - canon;
 	}
 	
+	public ReporteVenta reporteRecaudacion(Festival festival) throws Exception{
+		if(traerFestival(festival.getNombre(),festival.getTemporada())==null) {
+			throw new Exception("ERROR no se puede calcular la recaudacion porque el festival ingresado no existe");
+		}
+		double total=0;
+		for(UnidadVenta u:festival.getLstUnidadesDelFestival()) {
+			for(Pedido p:u.getLstPedidos()) {
+				total+=p.calcularTotal();
+			}
+		}
+		ReporteVenta recaudacion= new ReporteVenta(festival.getLstUnidadesDelFestival(), total) ;
+		return recaudacion;
+	}
+	
+	public double calcularTotalUnidad(UnidadVenta unidad) {
+		double total=0;
+		for (Pedido p: unidad.getLstPedidos()) {
+			total+=p.calcularTotal();
+		}
+		return total;
+	}
+	public List<UnidadVenta> rankingUnidades(Festival festival){
+		List<UnidadVenta> ranking = new ArrayList<>();
+		int i=0;
+		    for(i = 0; i < ranking.size() - 1; i++) {
+		        for(int j = 0; j < ranking.size() - 1 - i; j++) {
+		            if(calcularTotalUnidad(ranking.get(j)) < calcularTotalUnidad(ranking.get(j+1))) {
+		                UnidadVenta aux = ranking.get(j);
+		                ranking.set(j, ranking.get(j+1));
+		                ranking.set(j+1, aux);
+		            }
+		        }
+		    }
+		return ranking;
+	}
+	public Plato platoEstrella(UnidadVenta unidad, Festival festival) {
+		List<Plato> todosLosPlatos = new ArrayList<>();
+
+	    for(Pedido p : unidad.getLstPedidos()) {
+	        for(ItemPedido item : p.getLstItems()) {
+	            for(int i = 0; i < item.getCantidad(); i++) {
+	                todosLosPlatos.add(item.getPlato());
+	            }
+	        }
+	    }
+
+	    Plato estrella = null;
+	    int maxCantidad = 0;
+
+	    for(int i = 0; i < todosLosPlatos.size(); i++) {
+	        int conteo = 0;
+	        for(int j = 0; j < todosLosPlatos.size(); j++) {
+	            if(todosLosPlatos.get(i).getId() == todosLosPlatos.get(j).getId()) {
+	                conteo++;
+	            }
+	        }
+	        if(conteo > maxCantidad) {
+	            maxCantidad = conteo;
+	            estrella = todosLosPlatos.get(i);
+	        }
+	    }
+
+	    return estrella;		
+	}
+	
+	public List<ReporteMayoresCanon> traerUnidadesMayorCanon(Festival festival){
+		List<ReporteMayoresCanon> reportes = new ArrayList<>();
+		double canon = 0;
+	    // Armo la lista de reportes
+	    for(UnidadVenta u : festival.getLstUnidadesDelFestival()) {
+			try {
+				canon = festival.calcularCanon(u);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        reportes.add(new ReporteMayoresCanon(u, canon));
+	    }
+
+	    // Burbujeo de mayor a menor
+	    for(int i = 0; i < reportes.size() - 1; i++) {
+	        for(int j = 0; j < reportes.size() - 1 - i; j++) {
+	            if(reportes.get(j).getCanon() < reportes.get(j+1).getCanon()) {
+	                ReporteMayoresCanon aux = reportes.get(j);
+	                reportes.set(j, reportes.get(j+1));
+	                reportes.set(j+1, aux);
+	            }
+	        }
+	    }
+	    // Devolver solo los primeros 3
+	    return reportes.subList(0, Math.min(3, reportes.size()));
+	}
 }
