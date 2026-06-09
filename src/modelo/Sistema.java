@@ -22,7 +22,7 @@ public class Sistema {
 	
 	// EMPLEADO
 	public boolean altaEmpladoStaff(String nombre, String apellido, long dni, LocalDate fechaDeNacimiento,
-			LocalDate fechaDeIngreso , CategoriaCocinero especialidad) throws Exception {
+			LocalDate fechaDeIngreso,  CategoriaCocinero especialidad) throws Exception {
 		
 		if (this.traerEmpleado(dni) != null) {
 			throw new Exception("ERROR el empleado ya existe en el Staff\n");
@@ -35,7 +35,7 @@ public class Sistema {
 			id = lstStaff.get(lstStaff.size() -1).getId() +1;
 		}
 		
-		Cocinero c = new Cocinero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso, especialidad);
+		Cocinero c = new Cocinero(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso,especialidad);
 		
 		int edad = c.calcularEdad(LocalDate.now());
 		

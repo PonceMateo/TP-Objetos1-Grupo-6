@@ -102,7 +102,7 @@ public class Festival {
 		
 		return canon;
 	}
-	
+
 	public boolean agregarUnidadVenta(UnidadVenta u) throws Exception {
 		if(u == null) {
 			throw new Exception("La unidad de venta ingresada no existe");

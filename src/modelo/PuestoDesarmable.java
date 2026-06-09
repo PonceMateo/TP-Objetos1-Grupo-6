@@ -6,6 +6,7 @@ public class PuestoDesarmable extends UnidadVenta {
 	private int cantCarpas;
 	private float tiempoMontaje;
 	
+	
 
 	public PuestoDesarmable(int id, String codigo, String nombreComercial, float superficieEnM2, Empleado responsable,
 			int cantCarpas, float tiempoMontaje) {
