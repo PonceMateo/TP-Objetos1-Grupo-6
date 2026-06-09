@@ -57,4 +57,12 @@ public class Costos {
 		this.costoAntiguedad = costoAntiguedad;
 	}
 	//------------------------------------------------------------------------
+
+	@Override
+	public String toString() {
+		return "[costoPorSuperficie=" + costoPorSuperficie + "\ncostoMontaje=" + costoMontaje
+				+ "\ncostoUsoElectricidad=" + costoUsoElectricidad + "\ncostoSueldoBase=" + costoSueldoBase
+				+ "\ncostoAntiguedad=" + costoAntiguedad;
+	}
+	
 }

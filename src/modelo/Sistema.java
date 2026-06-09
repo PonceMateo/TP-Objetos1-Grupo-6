@@ -1,7 +1,6 @@
 package modelo;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -287,7 +286,7 @@ public class Sistema {
 		return total;
 	}
 	public List<UnidadVenta> rankingUnidades(Festival festival){
-		List<UnidadVenta> ranking = new ArrayList<>();
+		List<UnidadVenta> ranking = new ArrayList<>(festival.getLstUnidadesDelFestival());
 		int i=0;
 		    for(i = 0; i < ranking.size() - 1; i++) {
 		        for(int j = 0; j < ranking.size() - 1 - i; j++) {

@@ -67,6 +67,11 @@ public class Festival {
 		return lstUnidadesDelFestival;
 	}
 	//------------------------------------------------------------
+	@Override
+	public String toString() {
+		return "Festival [id=" + id + ", nombre=" + nombre + ", temporada=" + temporada + "\nfechaInicio=" + fechaInicio
+				+ ", fechaFin=" + fechaFin + "]";
+	}
 
 	public double calcularCanon(String codigo) throws Exception {
 		UnidadVenta u = this.traerUnidadVenta(codigo);
@@ -76,6 +81,7 @@ public class Festival {
 
 		return this.calcularCanon(u);
 	}
+
 
 	public double calcularCanon(UnidadVenta u) throws Exception {
 		//Validaciones

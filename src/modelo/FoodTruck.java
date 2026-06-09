@@ -43,6 +43,14 @@ public class FoodTruck extends UnidadVenta{
 
 	    return valido;
 	}
+
+	@Override
+	public String toString() {
+		return "FoodTruck [patente=" + patente + ", requiereElectricidad=" + requiereElectricidad + ", id=" + id
+				+ ", Codigo=" + Codigo + ", nombreComercial=" + nombreComercial + ", superficieEnM2=" + superficieEnM2
+				+ "\nresponsable=" + responsable + " lstEmpleados=" + lstEmpleados + ", lstPedidos=" + lstPedidos
+				+ ", lstPlatos=" + lstPlatos + "]\n";
+	}
 	
 	
 }

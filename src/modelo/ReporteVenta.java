@@ -12,7 +12,7 @@ public class ReporteVenta {
 	
 	public ReporteVenta(List<UnidadVenta> lstUnidadVenta, Double recaudacionTotal) {
 		super();
-		this.lstUnidadVenta = new ArrayList<>();
+		this.lstUnidadVenta = lstUnidadVenta;
 		this.recaudacionTotal = recaudacionTotal;
 	}
 	

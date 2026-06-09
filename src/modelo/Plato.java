@@ -29,4 +29,11 @@ public class Plato {
 	public float getCostoProduccion() {
 		return costoProduccion;
 	}
+
+	@Override
+	public String toString() {
+		return "Plato [id=" + id + ", nombrePlato=" + nombrePlato + ", precioVenta=" + precioVenta
+				+ ", costoProduccion=" + costoProduccion + "]";
+	}
+	
 }

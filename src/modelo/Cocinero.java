@@ -13,8 +13,6 @@ public class Cocinero extends Empleado {
 		super(id, nombre, apellido, dni, fechaDeNacimiento, fechaDeIngreso);
 		this.especialidad = especialidad;
 	}
-	
-	// METODOS
 
 	
 	// GETTERS Y SETTERS
@@ -29,7 +27,7 @@ public class Cocinero extends Empleado {
 	// TO STRING 
 	@Override
 	public String toString() {
-		return "Cocinero:"+super.toString()+"Especialidad : " + especialidad + ", Plus : " + especialidad.getPlus() + "]";
+		return "Cocinero:"+super.toString()+"Especialidad : " + especialidad + "]";
 	}
 
 	

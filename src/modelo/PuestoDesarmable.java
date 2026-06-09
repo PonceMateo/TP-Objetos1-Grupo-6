@@ -1,7 +1,5 @@
 package modelo;
 
-import java.time.LocalTime;
-
 public class PuestoDesarmable extends UnidadVenta {
 	private int cantCarpas;
 	private float tiempoMontaje;
@@ -50,6 +48,15 @@ public class PuestoDesarmable extends UnidadVenta {
 	    } 
 
 	    return valido;
+	}
+
+
+	@Override
+	public String toString() {
+		return "PuestoDesarmable [cantCarpas=" + cantCarpas + ", tiempoMontaje=" + tiempoMontaje + "\nid=" + id
+				+ ", Codigo=" + Codigo + ", nombreComercial=" + nombreComercial + ", superficieEnM2=" + superficieEnM2
+				+ ", responsable=" + responsable + ", lstPedidos=" + lstPedidos
+				+ ", lstPlatos=" + lstPlatos + "]";
 	}
 	
 }

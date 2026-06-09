@@ -90,11 +90,19 @@ public abstract class UnidadVenta {
 	}
 	//------------------------------------------------------------
 
+	
 	public String getTipo() {
 		// TODO Auto-generated method stubj
 		return null;
 	}
 	
+	@Override
+	public String toString() {
+		return "UnidadVenta [id=" + id + ", Codigo=" + Codigo + ", nombreComercial=" + nombreComercial
+				+ ", superficieEnM2=" + superficieEnM2 + ", responsable=" + responsable
+				 + "]";
+	}
+
 	public abstract boolean validarCodigo(String codigo);
 	
 	public boolean agregarEmpleado(Empleado empleado) throws Exception {
@@ -150,9 +158,4 @@ public abstract class UnidadVenta {
 		
 		return lstPedidos.add(pedido);
 	}
-	
-	
-	
-	
-	
 }
