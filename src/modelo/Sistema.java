@@ -344,7 +344,7 @@ public class Sistema {
 	        reportes.add(new ReporteMayoresCanon(u, canon));
 	    }
 
-	    // Burbujeo de mayor a menor
+	    // Burbujeo
 	    for(int i = 0; i < reportes.size() - 1; i++) {
 	        for(int j = 0; j < reportes.size() - 1 - i; j++) {
 	            if(reportes.get(j).getCanon() < reportes.get(j+1).getCanon()) {
@@ -354,7 +354,17 @@ public class Sistema {
 	            }
 	        }
 	    }
-	    // Devolver solo los primeros 3
+	    // Devuelve solo los primeros 3
 	    return reportes.subList(0, Math.min(3, reportes.size()));
+	}
+	
+	public List<Empleado> auditoriaFestival(Festival festival){
+		List<Empleado> auditoria=new ArrayList<>();
+		for(UnidadVenta U: festival.getLstUnidadesDelFestival()) {
+			for(Empleado E: U.getLstEmpleados()) {
+				auditoria.add(E);
+			}
+		}
+		return auditoria;
 	}
 }
