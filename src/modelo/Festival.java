@@ -179,15 +179,5 @@ public class Festival {
 		
 		return resultado;
 	}
-
-	public boolean AgregarUnidaDeVenta(int id, String codigo, String Nombrecomercial, Float Superficie, Empleado Responsable, int Cantcarpas, float tiempoMontaje){
-		UnidadVenta nuevo= new PuestoDesarmable(id, codigo, Nombrecomercial, Superficie, Responsable, Cantcarpas, tiempoMontaje);
-		return lstUnidadesDelFestival.add(nuevo);
-	}
-	public boolean AgregarUnidaDeVenta(int id, String codigo, String Nombrecomercial, Float Superficie, Empleado responsables, String patente, boolean RequiereElectricidad){
-		UnidadVenta nuevo= new FoodTruck(id, codigo, Nombrecomercial, Superficie, responsables, patente, RequiereElectricidad);
-		return lstUnidadesDelFestival.add(nuevo);
-
-	}
 	
 }
