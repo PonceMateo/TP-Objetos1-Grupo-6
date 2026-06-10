@@ -198,13 +198,13 @@ public class Sistema {
 	return encontrado;
 	}
 	
-	public boolean bajaUnidadVenta(String codigo) throws Exception {
+	public void bajaUnidadVenta(String codigo) throws Exception {
 		UnidadVenta u = this.traerUnidadVenta(codigo);
 		if (u == null) {
 			throw new Exception("ERROR la Unidad de Venta a eliminar no existe\n");
 		}
 		
-		return lstUnidadVenta.remove(u);
+		lstUnidadVenta.remove(u);
 	}
 	
 	
