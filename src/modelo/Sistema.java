@@ -71,14 +71,26 @@ public class Sistema {
 	}
 	
 	public void bajaEmpleado(long DNI) throws Exception {
-		
-		Empleado e = this.traerEmpleado(DNI);
-		
-		if (e == null) {
-			throw new Exception("ERROR el Empleado a eliminar no existe\n");
-		}
-		
-		lstStaff.remove(e);
+	    Empleado e = this.traerEmpleado(DNI);
+
+	    if (e == null) {
+	        throw new Exception("ERROR el Empleado a eliminar no existe\n");
+	    }
+
+	    //Verifica antes de eliminar de que el responsable no sea eliminado
+	    for (UnidadVenta u : lstUnidadVenta) {
+	        if (u.getResponsable().getDni() == DNI) {
+	            throw new Exception("ERROR el empleado es responsable de una unidad de venta\n");
+	        }
+	    }
+
+	    lstStaff.remove(e);
+
+	    for (UnidadVenta u : lstUnidadVenta) {
+	        if (u.traerEmpleado(DNI) != null) { //Revisa aquellas unidades donde el empleado está presente.
+	            u.quitarEmpleado(DNI);
+	        }
+	    }
 	}
 		
 	public Empleado traerEmpleado(long DNI) {
@@ -166,6 +178,22 @@ public class Sistema {
 		return u;
 	}
 
+	public void bajaUnidadVenta(String codigo) throws Exception {
+		UnidadVenta u = this.traerUnidadVenta(codigo);
+		if (u == null) {
+			throw new Exception("ERROR la Unidad de Venta a eliminar no existe\n");
+		}
+		
+		lstUnidadVenta.remove(u);
+		
+		for(Festival f : lstFestival) {
+			 if (f.traerUnidadVenta(codigo) != null) {
+		            f.quitarUnidadVenta(codigo);
+		        }
+		}
+	}
+	
+
 	public boolean AltaFestival(String nombre, String temporada, LocalDate fechaInicio 
 			,LocalDate fechaFin, float costoPorSuperficie, float costoMontaje
 			, float costoUsoElectricidad,  float sueldoBase,  float costoAntiguedad)throws Exception {
@@ -197,16 +225,6 @@ public class Sistema {
 	}
 	return encontrado;
 	}
-	
-	public void bajaUnidadVenta(String codigo) throws Exception {
-		UnidadVenta u = this.traerUnidadVenta(codigo);
-		if (u == null) {
-			throw new Exception("ERROR la Unidad de Venta a eliminar no existe\n");
-		}
-		
-		lstUnidadVenta.remove(u);
-	}
-	
 	
 	public boolean agregarPedido(String codigoUnidad, Festival festi,LocalDate fecha) throws Exception {
 

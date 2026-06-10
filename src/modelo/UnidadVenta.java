@@ -22,9 +22,9 @@ public abstract class UnidadVenta {
 		this.setCodigo(codigo); //Código de tipo: PD00001 (PuestoDesarmable) || FT00001 (FoodTruck)
 		this.nombreComercial = nombreComercial;
 		this.superficieEnM2 = superficieEnM2;
-		this.lstEmpleados = new ArrayList<>(); //TODO: Agregar el responsable a esta lista
-		this.lstPedidos = new ArrayList<>(); //<-- En estos si manejar id
-		this.lstPlatos = new ArrayList<>(); // <----'
+		this.lstEmpleados = new ArrayList<>(); 
+		this.lstPedidos = new ArrayList<>();
+		this.lstPlatos = new ArrayList<>(); 
 		
 		this.setResponsable(responsable);
 	}
@@ -63,7 +63,7 @@ public abstract class UnidadVenta {
 	}
 	public void setResponsable(Empleado responsable) {
 		this.responsable = responsable;
-		if(!this.lstEmpleados.contains(responsable)) { //Reviso si el nuevo responsable está en la lista actual, sino lo agrego
+		if(this.traerEmpleado(responsable.dni) == null) { //Reviso si el nuevo responsable está en la lista actual, sino lo agrego
 			this.lstEmpleados.add(responsable);
 		}
 	}
@@ -111,6 +111,34 @@ public abstract class UnidadVenta {
 			}
 		}
 		return lstEmpleados.add(empleado);
+	}
+	
+	public boolean quitarEmpleado(long DNI) throws Exception {
+		Empleado e = this.traerEmpleado(DNI);
+		
+		if (e == null) {
+			throw new Exception("ERROR el Empleado a eliminar no existe\n");
+		}
+		if(e == this.getResponsable()) {
+			throw new Exception("ERROR el Empleado a eliminar es el responsable\n");
+		}
+		
+		return lstEmpleados.remove(e);
+	}
+
+	public Empleado traerEmpleado(long DNI) {
+		
+		Empleado e = null;
+		int i = 0;
+		
+		while (e == null && i < lstEmpleados.size()) {
+			
+			if (lstEmpleados.get(i).getDni() == DNI) {
+				e = lstEmpleados.get(i);
+			}
+			i++;
+		}
+		return e;
 	}
 	
 	public boolean agregarPlato(String nombrePlato,float precioVenta,float costoProduccion) throws Exception {
