@@ -264,7 +264,7 @@ public class Sistema {
 
 	    double canon = festival.calcularCanon(unidad);
 
-	    return ingresos - costoPlatos - sueldos - canon;
+	    return ingresos - (costoPlatos - sueldos - canon);
 	}
 	
 	public double calculoRentabilidadNeta(UnidadVenta unidad, Festival festival, LocalDate fechaDesde, LocalDate fechaHasta) throws Exception {
@@ -288,7 +288,7 @@ public class Sistema {
 
 	    double canon = festival.calcularCanon(unidad);
 
-	    return ingresos - costoPlatos - sueldos - canon;
+	    return ingresos - (costoPlatos - sueldos - canon);
 	}
 	
 	public ReporteVenta reporteRecaudacion(Festival festival) throws Exception{
