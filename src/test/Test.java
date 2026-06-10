@@ -114,8 +114,7 @@ public class Test {
 			System.out.println(e.getMessage());
 		}
 
-		Festival festival =
-				sistema.traerFestival("Epicentro Gourmet", "2026");
+		Festival festival = sistema.traerFestival("Epicentro Gourmet", "2026");
 
 		try {
 
@@ -496,6 +495,21 @@ public class Test {
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
+		}
+		
+		try {
+			sistema.bajaFestival("Epicentro Gourmet", "2026");
+			System.out.println("Festival Eliminado Correctamente");
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		System.out.println("");
+		System.out.println("Intentamos Eliminar el mismo festival");
+		try {
+			sistema.bajaFestival("Epicentro Gourmet", "2026");
+			System.out.println("Festival Eliminado Correctamente");
+		} catch (Exception e1) {
+			e1.printStackTrace();
 		}
 	}
 }

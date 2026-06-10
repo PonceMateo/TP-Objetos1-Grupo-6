@@ -180,6 +180,13 @@ public class Sistema {
 		return lstFestival.add(nuevo);
 	}
 	
+	public void bajaFestival(String nombre, String temporada)throws Exception {
+		Festival festi= this.traerFestival(nombre, temporada);
+		if(festi==null) {
+			throw new Exception("ERROR El festival a eliminar no existe\n");
+		}
+		lstFestival.remove(festi);
+	}
 	
 	public Festival traerFestival(String nombre, String temporada) {
 	Festival encontrado=null;
@@ -366,4 +373,5 @@ public class Sistema {
 		}
 		return auditoria;
 	}
+	
 }
