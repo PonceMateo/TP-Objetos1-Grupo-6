@@ -120,6 +120,14 @@ public class Festival {
 		return lstUnidadesDelFestival.add(u);
 	}
 	
+	public boolean quitarUnidadVenta(String codigo) throws Exception {
+		if(codigo == null) {
+			throw new Exception("El codigo ingresado es nulo");
+		}
+		
+		return lstUnidadesDelFestival.remove(this.traerUnidadVenta(codigo));
+	}
+	
 	public UnidadVenta traerUnidadVenta(String codigo) { //Traer una unidad de venta que pertenezca a este festival
 		UnidadVenta u = null;
 		
