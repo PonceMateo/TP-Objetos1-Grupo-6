@@ -204,27 +204,23 @@ public class Test {
 
 		try {
 
-			UnidadVenta burger =
-					sistema.traerUnidadVenta("FT00001");
+			UnidadVenta burger = sistema.traerUnidadVenta("FT00001");
 
 			burger.agregarPlato("Hamburguesa",12000,5000);
 			burger.agregarPlato("Papas",6000,2000);
 			burger.agregarPlato("Gaseosa",3000,1000);
 
-			UnidadVenta pizza =
-					sistema.traerUnidadVenta("FT00002");
+			UnidadVenta pizza = sistema.traerUnidadVenta("FT00002");
 
 			pizza.agregarPlato("Pizza",15000,7000);
 			pizza.agregarPlato("Faina",4000,1500);
 
-			UnidadVenta parrilla =
-					sistema.traerUnidadVenta("PD00001");
+			UnidadVenta parrilla = sistema.traerUnidadVenta("PD00001");
 
 			parrilla.agregarPlato("Asado",20000,9000);
 			parrilla.agregarPlato("Choripan",8000,3000);
 
-			UnidadVenta dulce =
-					sistema.traerUnidadVenta("PD00002");
+			UnidadVenta dulce = sistema.traerUnidadVenta("PD00002");
 
 			dulce.agregarPlato("Torta",10000,3000);
 			dulce.agregarPlato("Cafe",4000,1000);
@@ -240,12 +236,11 @@ public class Test {
 
 		try {
 
-			UnidadVenta burger =
-					sistema.traerUnidadVenta("FT00001");
+			UnidadVenta burger = sistema.traerUnidadVenta("FT00001");
 
-			sistema.agregarPedido("FT00001", festival, LocalDate.now());
-			sistema.agregarPedido("FT00001", festival, LocalDate.now());
-			sistema.agregarPedido("FT00001", festival, LocalDate.now());
+		    sistema.agregarPedido("FT00001", festival, LocalDate.of(2026, 6, 7));
+		    sistema.agregarPedido("FT00001", festival, LocalDate.of(2026, 6, 9));
+		    sistema.agregarPedido("FT00001", festival, LocalDate.of(2026, 6, 10));
 
 			burger.getLstPedidos().get(0)
 					.agregarItem(5, burger.traerPlato("Hamburguesa"));
@@ -262,11 +257,10 @@ public class Test {
 			burger.getLstPedidos().get(2)
 					.agregarItem(10, burger.traerPlato("Hamburguesa"));
 
-			UnidadVenta pizza =
-					sistema.traerUnidadVenta("FT00002");
+			UnidadVenta pizza = sistema.traerUnidadVenta("FT00002");
 
-			sistema.agregarPedido("FT00002", festival, LocalDate.now());
-			sistema.agregarPedido("FT00002", festival, LocalDate.now());
+		    sistema.agregarPedido("FT00002", festival, LocalDate.of(2026, 6, 8));
+		    sistema.agregarPedido("FT00002", festival, LocalDate.of(2026, 6, 10));
 
 			pizza.getLstPedidos().get(0)
 					.agregarItem(4, pizza.traerPlato("Pizza"));
@@ -277,11 +271,10 @@ public class Test {
 			pizza.getLstPedidos().get(1)
 					.agregarItem(6, pizza.traerPlato("Pizza"));
 
-			UnidadVenta parrilla =
-					sistema.traerUnidadVenta("PD00001");
+			UnidadVenta parrilla = sistema.traerUnidadVenta("PD00001");
 
-			sistema.agregarPedido("PD00001", festival, LocalDate.now());
-			sistema.agregarPedido("PD00001", festival, LocalDate.now());
+		    sistema.agregarPedido("PD00001", festival, LocalDate.of(2026, 6, 7));
+		    sistema.agregarPedido("PD00001", festival, LocalDate.of(2026, 6, 9));
 
 			parrilla.getLstPedidos().get(0)
 					.agregarItem(3, parrilla.traerPlato("Asado"));
@@ -292,10 +285,9 @@ public class Test {
 			parrilla.getLstPedidos().get(1)
 					.agregarItem(2, parrilla.traerPlato("Asado"));
 
-			UnidadVenta dulce =
-					sistema.traerUnidadVenta("PD00002");
+			UnidadVenta dulce = sistema.traerUnidadVenta("PD00002");
 
-			sistema.agregarPedido("PD00002", festival, LocalDate.now());
+		    sistema.agregarPedido("PD00002", festival, LocalDate.of(2026, 6, 8));
 
 			dulce.getLstPedidos().get(0)
 					.agregarItem(4, dulce.traerPlato("Torta"));
@@ -347,16 +339,27 @@ public class Test {
 
 		try {
 
-			for(UnidadVenta u :
-					festival.getLstUnidadesDelFestival()) {
+			 // Sin filtro de fechas
+		    for (UnidadVenta u : festival.getLstUnidadesDelFestival()) {
+		        System.out.println(
+		            u.getNombreComercial()
+		            + " -> "
+		            + sistema.calculoRentabilidadNeta(u, festival));
+		    }
 
-				System.out.println(
-						u.getNombreComercial()
-						+ " -> "
-						+ sistema.calculoRentabilidadNeta(
-								u,
-								festival));
-			}
+		    System.out.println("---------------------------------");
+
+		    // Con filtro de fechas
+		    LocalDate desde = LocalDate.of(2026, 6, 9);
+		    LocalDate hasta = LocalDate.of(2026, 12, 31);
+
+		    for (UnidadVenta u : festival.getLstUnidadesDelFestival()) {
+		        System.out.println(
+		            u.getNombreComercial()
+		            + " (con fechas) -> "
+		            + sistema.calculoRentabilidadNeta(u, festival, desde, hasta));
+		    }
+			
 
 		} catch(Exception e) {
 			System.out.println(e.getMessage());
@@ -369,6 +372,7 @@ public class Test {
 
 		int pos = 1;
 
+		//Funciones.imprimirLista(sistema.rankingUnidades(festival));
 		for(UnidadVenta u :
 				sistema.rankingUnidades(festival)) {
 
@@ -416,15 +420,11 @@ public class Test {
 		System.out.println("CASO 13 - MAYORES CANON");
 		System.out.println("=================================");
 
+		int i = 0;
 		for(ReporteMayoresCanon r :
 				sistema.traerUnidadesMayorCanon(festival)) {
-
-			System.out.println(
-					r.getNombreComercial()
-					+ " | "
-					+ r.getCodigo()
-					+ " | Canon: $"
-					+ r.getCanon());
+			i++;
+			System.out.println(i + ":" + r);
 		}
 
 		System.out.println();
@@ -501,7 +501,7 @@ public class Test {
 			sistema.bajaFestival("Epicentro Gourmet", "2026");
 			System.out.println("Festival Eliminado Correctamente");
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 		System.out.println("");
 		System.out.println("Intentamos Eliminar el mismo festival");
@@ -509,7 +509,7 @@ public class Test {
 			sistema.bajaFestival("Epicentro Gourmet", "2026");
 			System.out.println("Festival Eliminado Correctamente");
 		} catch (Exception e1) {
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
 	}
 }

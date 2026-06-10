@@ -225,6 +225,8 @@ public class Sistema {
 		return unidad.agregarPedido(festival, fecha);
 	}
 	
+	
+	
 	public double calculoRentabilidadNeta(UnidadVenta unidad,Festival festival) throws Exception {
 
 	    double ingresos = 0;
@@ -368,7 +370,9 @@ public class Sistema {
 		List<Empleado> auditoria=new ArrayList<>();
 		for(UnidadVenta U: festival.getLstUnidadesDelFestival()) {
 			for(Empleado E: U.getLstEmpleados()) {
-				auditoria.add(E);
+				if (!auditoria.contains(E)) {
+	                auditoria.add(E);
+	            }
 			}
 		}
 		return auditoria;

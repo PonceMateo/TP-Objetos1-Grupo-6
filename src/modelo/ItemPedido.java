@@ -36,6 +36,12 @@ public class ItemPedido {
 	public double calcularSubtotal() {
 		return cantidad * plato.getPrecioVenta();
 	}
+
+
+	@Override
+	public String toString() {
+		return "ItemPedido [id=" + id + ", cantidad=" + cantidad + ", plato=" + plato + "]";
+	}
 	
 	
 }

@@ -29,6 +29,10 @@ public class PuestoDesarmable extends UnidadVenta {
 		this.tiempoMontaje = tiempoMontaje;
 	}
 
+	public String getTipo() {
+		return "PuestoDesarmable";
+	}
+
 	//------------------------------------------------------------
 	
 
@@ -53,10 +57,10 @@ public class PuestoDesarmable extends UnidadVenta {
 
 	@Override
 	public String toString() {
-		return "PuestoDesarmable [cantCarpas=" + cantCarpas + ", tiempoMontaje=" + tiempoMontaje + "\nid=" + id
+		return "PuestoDesarmable [cantCarpas=" + cantCarpas + ", tiempoMontaje=" + tiempoMontaje + "id=" + id
 				+ ", Codigo=" + Codigo + ", nombreComercial=" + nombreComercial + ", superficieEnM2=" + superficieEnM2
-				+ ", responsable=" + responsable + ", lstPedidos=" + lstPedidos
-				+ ", lstPlatos=" + lstPlatos + "]";
+				+ ", responsable=" + responsable.getNombreCompleto() + ", \n\tlstPedidos=" + lstPedidos
+				+ ", \n\tlstPlatos=" + lstPlatos + "]";
 	}
 	
 }

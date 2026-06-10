@@ -81,8 +81,9 @@ public class Pedido {
 		return total;
 	}
 	
-	private boolean validarPedido() {
-		return fecha != null && festival != null && unidadVenta != null;
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", fecha=" + fecha + "]";
 	}
 	
 	

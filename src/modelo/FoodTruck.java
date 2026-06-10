@@ -24,6 +24,9 @@ public class FoodTruck extends UnidadVenta{
 	public void setRequiereElectricidad(Boolean requiereElectricidad) {
 		this.requiereElectricidad = requiereElectricidad;
 	}
+	public String getTipo() {
+		return "FoodTruck";
+	}
 	//------------------------------------------------------------
 	
 	@Override
@@ -48,8 +51,8 @@ public class FoodTruck extends UnidadVenta{
 	public String toString() {
 		return "FoodTruck [patente=" + patente + ", requiereElectricidad=" + requiereElectricidad + ", id=" + id
 				+ ", Codigo=" + Codigo + ", nombreComercial=" + nombreComercial + ", superficieEnM2=" + superficieEnM2
-				+ "\nresponsable=" + responsable + " lstEmpleados=" + lstEmpleados + ", lstPedidos=" + lstPedidos
-				+ ", lstPlatos=" + lstPlatos + "]\n";
+				+ "responsable=" + responsable.getNombreCompleto() + ", \n\tlstPedidos=" + lstPedidos
+				+ ", \n\tlstPlatos=" + lstPlatos + "]";
 	}
 	
 	

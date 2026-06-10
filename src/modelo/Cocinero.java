@@ -27,7 +27,7 @@ public class Cocinero extends Empleado {
 	// TO STRING 
 	@Override
 	public String toString() {
-		return "Cocinero:"+super.toString()+"Especialidad : " + especialidad + "]";
+		return "Cocinero:"+super.toString()+" especialidad : " + especialidad + "]";
 	}
 
 	

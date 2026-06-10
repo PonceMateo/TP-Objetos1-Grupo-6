@@ -22,8 +22,8 @@ public class Festival {
 		this.temporada = temporada;
 		this.fechaInicio = fechaInicio;
 		this.fechaFin = fechaFin;
-		setCostos(costoSuperficie, costoMontaje, costoUsoElectricidad, costoSueldoBase, costoAntiguedad); //TODO: Agregar CostoAntiguedad
-		this.lstUnidadesDelFestival = new ArrayList<>(); //No manejar IDs, lo maneja el sistema.
+		setCostos(costoSuperficie, costoMontaje, costoUsoElectricidad, costoSueldoBase, costoAntiguedad); 
+		this.lstUnidadesDelFestival = new ArrayList<>();
 	}
 
 	//GETTERS Y SETTERS ---------------------------------------------
@@ -69,7 +69,7 @@ public class Festival {
 	//------------------------------------------------------------
 	@Override
 	public String toString() {
-		return "Festival [id=" + id + ", nombre=" + nombre + ", temporada=" + temporada + "\nfechaInicio=" + fechaInicio
+		return "Festival [id=" + id + ", nombre=" + nombre + ", temporada=" + temporada + "fechaInicio=" + fechaInicio
 				+ ", fechaFin=" + fechaFin + "]";
 	}
 

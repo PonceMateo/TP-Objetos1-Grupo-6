@@ -12,7 +12,7 @@ public class ReporteMayoresCanon {
 		super();
 		this.nombreComercial = unidad.getNombreComercial();
 		this.codigo = unidad.getCodigo();
-		this.tipoUnidad = unidad.getTipo(); //TODO: Hacer este método. Es una pelotudez
+		this.tipoUnidad = unidad.getTipo();
 		this.canon = canon;
 	}
 
@@ -43,6 +43,13 @@ public class ReporteMayoresCanon {
 		this.canon = canon;
 	}
 	//------------------------------------------------------------
+
+
+	@Override
+	public String toString() {
+		return "[Nombre: " + nombreComercial + ", Codigo:" + codigo + ", tipo="
+				+ tipoUnidad + ", canon=" + canon + "]";
+	}
 	
 	
 	

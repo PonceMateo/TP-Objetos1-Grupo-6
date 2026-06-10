@@ -91,15 +91,12 @@ public abstract class UnidadVenta {
 	//------------------------------------------------------------
 
 	
-	public String getTipo() {
-		// TODO Auto-generated method stubj
-		return null;
-	}
+	public abstract String getTipo();
 	
 	@Override
 	public String toString() {
 		return "UnidadVenta [id=" + id + ", Codigo=" + Codigo + ", nombreComercial=" + nombreComercial
-				+ ", superficieEnM2=" + superficieEnM2 + ", responsable=" + responsable
+				+ ", superficieEnM2=" + superficieEnM2 + ", responsable=" + responsable.getNombre()
 				 + "]";
 	}
 

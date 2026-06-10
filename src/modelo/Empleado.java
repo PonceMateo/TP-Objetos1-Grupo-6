@@ -87,12 +87,15 @@ public abstract class Empleado {
 	public void setFechaDeIngreso(LocalDate fechaDeIngreso) {
 		this.fechaDeIngreso = fechaDeIngreso;
 	}
+	public String getNombreCompleto() {
+		return this.nombre + " " + this.apellido;
+	}
 	
 	// TO STRING 
 	@Override
 	public String toString() {
 		return " ID : " + id + ", Nombre : " + nombre + ", Apellido : " + apellido + ", DNI : " + dni
-				+ "\nFechaDeNacimiento : " + fechaDeNacimiento + ", FechaDeIngreso : " + fechaDeIngreso +"\n";
+				+ ", fechaDeNacimiento : " + fechaDeNacimiento + ", fechaDeIngreso : " + fechaDeIngreso;
 	}
 
 	// EQUALS
