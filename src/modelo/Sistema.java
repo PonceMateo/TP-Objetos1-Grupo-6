@@ -71,14 +71,26 @@ public class Sistema {
 	}
 	
 	public void bajaEmpleado(long DNI) throws Exception {
-		
-		Empleado e = this.traerEmpleado(DNI);
-		
-		if (e == null) {
-			throw new Exception("ERROR el Empleado a eliminar no existe\n");
-		}
-		
-		lstStaff.remove(e);
+	    Empleado e = this.traerEmpleado(DNI);
+
+	    if (e == null) {
+	        throw new Exception("ERROR el Empleado a eliminar no existe\n");
+	    }
+
+	    //Verifica antes de eliminar de que el responsable no sea eliminado
+	    for (UnidadVenta u : lstUnidadVenta) {
+	        if (u.getResponsable().getDni() == DNI) {
+	            throw new Exception("ERROR el empleado es responsable de una unidad de venta\n");
+	        }
+	    }
+
+	    lstStaff.remove(e);
+
+	    for (UnidadVenta u : lstUnidadVenta) {
+	        if (u.traerEmpleado(DNI) != null) { //Revisa aquellas unidades donde el empleado está presente.
+	            u.quitarEmpleado(DNI);
+	        }
+	    }
 	}
 		
 	public Empleado traerEmpleado(long DNI) {
